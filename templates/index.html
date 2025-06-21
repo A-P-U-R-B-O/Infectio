@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Infectio - SIR Disease Spread Simulator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            background: #f9fafb;
+            color: #333;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        form {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        label {
+            display: block;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+        input[type="number"], input[type="text"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.3rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        input[type="submit"] {
+            margin-top: 1.5rem;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #219150;
+        }
+        .error {
+            background: #ffdddd;
+            border: 1px solid #dd4444;
+            padding: 0.8rem;
+            border-radius: 4px;
+            color: #a94442;
+            margin-bottom: 1rem;
+        }
+        .results {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .results img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1rem auto;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+        ul.stats {
+            list-style: none;
+            padding: 0;
+            font-size: 1.1rem;
+        }
+        ul.stats li {
+            padding: 0.4rem 0;
+        }
+        a.download-link {
+            display: inline-block;
+            margin-top: 1rem;
+            background: #2980b9;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        a.download-link:hover {
+            background: #1f5f85;
+        }
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            color: #777;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Infectio: SIR Disease Spread Simulation</h1>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('index') }}">
+        <label for="population">Population</label>
+        <input type="number" id="population" name="population" min="1" value="{{ population or 1000 }}" required />
+
+        <label for="initial_infected">Initially Infected</label>
+        <input type="number" id="initial_infected" name="initial_infected" min="0" value="{{ initial_infected or 1 }}" required />
+
+        <label for="beta">Beta (Transmission Rate)</label>
+        <input type="text" id="beta" name="beta" value="{{ beta or 0.3 }}" pattern="^\d*\.?\d+$" title="Enter a positive decimal number" required />
+
+        <label for="gamma">Gamma (Recovery Rate)</label>
+        <input type="text" id="gamma" name="gamma" value="{{ gamma or 0.1 }}" pattern="^\d*\.?\d+$" title="Enter a positive decimal number" required />
+
+        <label for="days">Days to Simulate</label>
+        <input type="number" id="days" name="days" min="1" value="{{ days or 160 }}" required />
+
+        <input type="submit" value="Run Simulation" />
+    </form>
+
+    {% if img_path %}
+        <div class="results">
+            <h2>Simulation Results</h2>
+            <img src="{{ img_path }}" alt="Infection Curve" />
+
+            {% if stats %}
+                <h3>Summary Statistics</h3>
+                <ul class="stats">
+                    <li><strong>Final Susceptible:</strong> {{ stats["Final Susceptible"] | round(2) }}</li>
+                    <li><strong>Final Infected:</strong> {{ stats["Final Infected"] | round(2) }}</li>
+                    <li><strong>Final Recovered:</strong> {{ stats["Final Recovered"] | round(2) }}</li>
+                </ul>
+                <a href="{{ url_for('download_csv') }}" class="download-link">Download CSV Results</a>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <footer>
+        &copy; 2025 Infectio &mdash; Disease Spread Simulation App
+    </footer>
+</body>
+</html>
