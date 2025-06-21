@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, url_for, send_file
 import os
-from app.simulation import SIRModel
+from core.simulation import SIRModel
 import matplotlib.pyplot as plt
 
 app = Flask(__name__)
