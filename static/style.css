@@ -1,0 +1,122 @@
+/* Reset some default styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 2rem auto;
+    max-width: 700px;
+    background: #f9fafb;
+    color: #333;
+    padding: 0 1rem;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+form {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+label {
+    display: block;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+input[type="number"],
+input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+    border-color: #2980b9;
+    outline: none;
+}
+
+input[type="submit"] {
+    margin-top: 1.5rem;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #219150;
+}
+
+.error {
+    background: #ffdddd;
+    border: 1px solid #dd4444;
+    padding: 0.8rem;
+    border-radius: 4px;
+    color: #a94442;
+    margin-bottom: 1rem;
+}
+
+.results {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.results img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+ul.stats {
+    list-style: none;
+    padding: 0;
+    font-size: 1.1rem;
+}
+
+ul.stats li {
+    padding: 0.4rem 0;
+}
+
+a.download-link {
+    display: inline-block;
+    margin-top: 1rem;
+    background: #2980b9;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+a.download-link:hover {
+    background: #1f5f85;
+}
+
+footer {
+    margin-top: 3rem;
+    text-align: center;
+    color: #777;
+    font-size: 0.9rem;
+}
