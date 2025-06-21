@@ -8,11 +8,6 @@
 
 > 🔗 Coming Soon on [Render](https://render.com)
 
----
-
-## 📸 Preview
-
-![Infection Curve](static/infection_curve.png)
 
 ---
 
@@ -49,8 +44,3 @@
 - **Deployment**
   - Gunicorn (WSGI)
   - Render.com (Free Hosting)
-
----
-
-## 📁 Project Structure
-
